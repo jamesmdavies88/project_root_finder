@@ -11,7 +11,6 @@ def _get_project_root(start_path=None, marker_filename=".project-root-hook"):
         'Pipfile',      # Pipenv projects
         'pyproject.toml', # Poetry or modern Python projects
         'requirements.txt', # Traditional virtualenv-based projects
-        'setup.py',     # Classic setuptools projects
     ]
 
     for parent in [path] + list(path.parents):

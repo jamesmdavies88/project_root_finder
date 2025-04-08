@@ -10,6 +10,19 @@ You can install the package using pip:
 pip install project_root_finder
 ```
 
+## Setup
+
+If you have any of these files at the root of your project:
+
+   - `.git` (Git repository)
+   - `pyproject.toml` (Python project config)
+   - `requirements.txt` (Python package setup)
+   - `Pipfile` (Pipenv configuration)
+
+You don't need to do anything.
+
+If you don't have these, add a file named `.project-root-hook` to the root of your project. This file can be empty, but its presence will allow the package to identify the project root.
+
 ## Usage Examples
 
 The `project_root_finder` package provides a simple way to get the absolute path to your project's root directory. This is useful for file operations that need to be relative to your project root, regardless of where the script is executed from.
@@ -39,7 +52,7 @@ The package determines the project root by:
 2. Searching upward through parent directories for common project marker files:
    - `.git` (Git repository)
    - `pyproject.toml` (Python project config)
-   - `setup.py` (Python package setup)
+   - `requirements.txt` (Python package setup)
    - `Pipfile` (Pipenv configuration)
 3. If a marker is found, that directory is used as the project root
 4. If no markers are found in any parent directories, it falls back to the parent directory of the module
@@ -99,3 +112,8 @@ The tests cover the following scenarios:
 | `test_deeply_nested_still_finds_root` | Deep directory traversal | Checks that even when called from a very deeply nested directory (10 levels down), the root is still correctly found by traversing upwards. |
 
 ---
+
+<!--
+Description: A Python utility to find the root directory of a project using common markers like .git, pyproject.toml, and custom hooks.
+Keywords: Python, project root, find root directory, pathlib, project structure
+-->
