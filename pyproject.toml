@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "project_root_finder"
-version = "1.8"
+version = "1.9"
 description = "A simple package to get the absolute path of your Python project root"
 readme = "README.md"
 requires-python = ">=3.7"
@@ -12,7 +12,7 @@ license = { text = "MIT" }
 authors = [
     { name="James", email="mail@jamesdavies.me" }
 ]
-keywords = ["project", "root", "path", "utility"]
+keywords = ["project", "root", "path", "utility", "directory"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.7",
