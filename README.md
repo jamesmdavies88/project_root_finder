@@ -82,10 +82,20 @@ pytest -v
 
 The test suite verifies that `project_root_finder`:
 
-1. Returns a proper Path object
-2. Always returns an absolute path
-3. Correctly identifies project roots by detecting project marker files
-4. Falls back to the package's parent directory when no markers are found
-5. Properly checks all supported project markers in each parent directory
+This test suite comprehensively verifies the behaviour of `_get_project_root`, ensuring it correctly identifies the project root directory under a variety of conditions.
 
-The tests use mocking to simulate different directory structures without requiring actual filesystem changes.
+The tests cover the following scenarios:
+
+| Test Name | Purpose | What it Verifies |
+|:----------|:--------|:-----------------|
+| `test_finds_project_root_hook` | Priority on `.project-root-hook` | Ensures the function correctly identifies the root when `.project-root-hook` is present, even from nested folders. |
+| `test_fallback_to_git` | Fallback to `.git` marker | Ensures that if `.project-root-hook` is missing, the function falls back correctly to detecting a `.git` directory. |
+| `test_fallback_to_pipfile` | Fallback to `Pipfile` marker | Checks fallback behaviour when a `Pipfile` exists instead of `.project-root-hook`. |
+| `test_fallback_to_pyproject_toml` | Fallback to `pyproject.toml` | Verifies that `pyproject.toml` is correctly recognised as a valid project root marker if no hook is present. |
+| `test_no_marker_returns_none` | No markers at all | Confirms that the function returns `None` gracefully if no valid markers are found. |
+| `test_custom_start_path_at_root` | Start directly at root | Ensures that starting the search from the root itself works correctly and immediately finds the root. |
+| `test_multiple_markers_prefers_project_hook` | Priority over fallback markers | Verifies that `.project-root-hook` is prioritised over any fallback markers like `.git`, even if both are present. |
+| `test_fallback_order_is_respected` | Correct fallback order | Ensures that when multiple fallback markers exist, the function still correctly identifies the root without confusion. |
+| `test_deeply_nested_still_finds_root` | Deep directory traversal | Checks that even when called from a very deeply nested directory (10 levels down), the root is still correctly found by traversing upwards. |
+
+---
