@@ -58,6 +58,7 @@ if [ "$CREATE_RELEASE" = "y" ] || [ "$CREATE_RELEASE" = "Y" ]; then
     echo "GitHub Release created."
 fi
 
+
 echo "----------------------------------------"
 echo " Script completed."
 echo "----------------------------------------"
