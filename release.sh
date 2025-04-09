@@ -53,7 +53,9 @@ if [ "$CREATE_RELEASE" = "y" ] || [ "$CREATE_RELEASE" = "Y" ]; then
     fi
 
     read -p "Enter release notes (a short summary): " RELEASE_NOTES
-    gh auth login  # Will prompt you if not authenticated
+    if ! gh auth status > /dev/null 2>&1; then
+        gh auth login
+    fi
     gh release create "v$VERSION" --title "v$VERSION" --notes "$RELEASE_NOTES"
     echo "GitHub Release created."
 fi

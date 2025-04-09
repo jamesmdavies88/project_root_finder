@@ -1,5 +1,7 @@
 # project_root_finder
 
+[![PyPI Downloads](https://static.pepy.tech/badge/project-root-finder)](https://pepy.tech/projects/project-root-finder)
+
 `project_root_finder` is a simple Python package that provides a variable `root` which represents the absolute path to the root of the project in which it is installed.
 
 ## Installation
