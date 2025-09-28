@@ -1,6 +1,7 @@
 from pathlib import Path
+from typing import Optional, Union
 
-def _get_project_root(start_path=None, marker_filename=".project-root-hook"):
+def _get_project_root(start_path: Optional[Union[str, Path]] = None, marker_filename: str = ".project-root-hook") -> Optional[Path]:
     if start_path is None:
         path = Path.cwd()
     else:
@@ -25,6 +26,6 @@ def _get_project_root(start_path=None, marker_filename=".project-root-hook"):
 
     return None
 
-root = _get_project_root()
+root: Optional[Path] = _get_project_root()
 
 __all__ = ["root"]
